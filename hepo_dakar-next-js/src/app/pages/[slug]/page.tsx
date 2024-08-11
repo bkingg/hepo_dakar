@@ -16,7 +16,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   const pageImageUrl = page.image
     ? urlFor(page.image).size(1000, 1000).crop("center").url()
-    : "";
+    : undefined;
   return (
     <>
       <PageHeader image={pageImageUrl}>
