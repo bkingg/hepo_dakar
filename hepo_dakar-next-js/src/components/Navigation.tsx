@@ -16,10 +16,8 @@ export default async function Navigation() {
   const SITE_SETTINGS_QUERY = `*[
     _type == "siteSettings"
   ][0]{
-    _id, 
     logo,
     mainMenu->{handle},
-    facebook,
   }`;
 
   const siteSettings = await sanityFetch<SanityDocument>({

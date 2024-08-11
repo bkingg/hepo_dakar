@@ -66,6 +66,36 @@ export default defineType({
       type: 'url',
       group: 'social'
     }),
+    defineField({
+      title: 'Pied de page',
+      name: 'footerMenus',
+      group: 'footer',
+      type: 'array',
+      validation: (rule) => rule.max(5),
+      of: [
+        defineField({
+          title: 'Menu de Pied de Page',
+          name: 'footerMenu',
+          type: 'object', 
+          fields: [
+            defineField({
+              title: 'Titre',
+              name: 'title',
+              type: 'string'
+            }),
+            defineField({
+              title: 'Menu',
+              name: 'menu',
+              type: 'reference', to: [{type: 'menu'}],
+              validation: (rule) => rule.required(),
+            })
+          ]
+        })
+      ],
+      options: {
+        sortable: true, // Enable sorting
+      }
+    }),
   ],
   initialValue: {
     title: 'Paramètres du Site',
