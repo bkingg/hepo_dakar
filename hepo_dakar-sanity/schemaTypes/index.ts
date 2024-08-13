@@ -5,6 +5,7 @@ import pageType from "./pageType";
 import sliderSectionType from "./sliderSectionType";
 import logoListSection from "./logoListSection";
 import programmeType from "./programmeType";
+import articleType from "./articleType";
 
 export const schemaTypes = [
     siteSettings,
@@ -12,6 +13,7 @@ export const schemaTypes = [
     menuItemType,
     pageType,
     programmeType,
+    articleType,
     sliderSectionType,
     logoListSection,
 ]

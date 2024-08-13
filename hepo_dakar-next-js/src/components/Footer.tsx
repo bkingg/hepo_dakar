@@ -42,19 +42,17 @@ export default async function Footer() {
               <div key={menu._key} className="col-6 col-md-2 mb-3">
                 <h5>{menu.title}</h5>
                 <ul className="nav flex-column">
-                  {menu.menu.items?.map((link: MenuItem) => {
-                    return (
-                      <li className="nav-item mb-2">
-                        <Link
-                          key={link._key}
-                          className="nav-link p-0 text-body-secondary"
-                          href={link.url}
-                        >
-                          {link.title}
-                        </Link>
-                      </li>
-                    );
-                  })}
+                  {menu.menu.items?.map((link: MenuItem) => (
+                    <li className="nav-item mb-2" key={link._key}>
+                      <Link
+                        key={link._key}
+                        className="nav-link p-0 text-body-secondary"
+                        href={link.url}
+                      >
+                        {link.title}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </div>
             );

@@ -17,7 +17,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   });
 
   const programmeImageUrl = programme.image
-    ? urlFor(programme.image).size(1000, 1000).crop("center").url()
+    ? urlFor(programme.image).width(1000).url()
     : undefined;
 
   return (

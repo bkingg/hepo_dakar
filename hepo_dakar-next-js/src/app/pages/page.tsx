@@ -1,9 +1,9 @@
 import PageHeader from "@/components/PageHeader";
 import { sanityFetch } from "@/sanity/client";
-import { SanityDocument } from "next-sanity";
+import { groq, SanityDocument } from "next-sanity";
 import Link from "next/link";
 
-const PAGES_QUERY = `*[
+const PAGES_QUERY = groq`*[
   _type == "page"
   && defined(slug.current)
 ]{_id, title, slug, image, description}`;
