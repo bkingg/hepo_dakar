@@ -1,5 +1,6 @@
 import urlFor from "@/lib/urlFor";
 import Image from "next/image";
+import Link from "next/link";
 import { Carousel, CarouselItem, CarouselCaption } from "react-bootstrap";
 
 interface SliderSectionProps {
@@ -11,6 +12,8 @@ interface Slide {
   image: object;
   title: string;
   description: string;
+  ctaText: string;
+  ctaUrl: string;
 }
 
 export default function SliderSection({ slides }: SliderSectionProps) {
@@ -27,10 +30,17 @@ export default function SliderSection({ slides }: SliderSectionProps) {
                 alt={slide.title}
                 className="d-block w-100 img-fluid"
               />
-              <CarouselCaption>
-                <h3>{slide.title}</h3>
-                <p>{slide.description}</p>
-              </CarouselCaption>
+              {(slide.title || slide.description) && (
+                <CarouselCaption>
+                  <h3>{slide.title}</h3>
+                  <p>{slide.description}</p>
+                  {slide.ctaText && slide.ctaUrl && (
+                    <Link className="btn btn-primary" href={slide.ctaUrl}>
+                      {slide.ctaText}
+                    </Link>
+                  )}
+                </CarouselCaption>
+              )}
             </CarouselItem>
           );
         })}

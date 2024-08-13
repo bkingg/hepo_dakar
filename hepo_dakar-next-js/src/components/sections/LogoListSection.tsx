@@ -22,9 +22,9 @@ export default function LogoListSection({ section }: LogoListSectionProps) {
         <div className="section__logo-list__logos row justify-content-evenly">
           {section.logos.map((logo: Logo) => {
             return (
-              <div className="col-sm-6 col-md-2">
+              <div key={logo._key} className="col-sm-6 col-md-2">
                 {logo.url !== "#" ? (
-                  <Link key={logo._key} href={logo.url} target="_blank">
+                  <Link href={logo.url} target="_blank">
                     <Image
                       src={urlFor(logo.image)
                         .size(200, 200)

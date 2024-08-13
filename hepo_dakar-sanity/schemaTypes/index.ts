@@ -6,6 +6,7 @@ import sliderSectionType from "./sliderSectionType";
 import logoListSection from "./logoListSection";
 import programmeType from "./programmeType";
 import articleType from "./articleType";
+import latestArticlesSection from "./latestArticlesSection";
 
 export const schemaTypes = [
     siteSettings,
@@ -16,4 +17,5 @@ export const schemaTypes = [
     articleType,
     sliderSectionType,
     logoListSection,
+    latestArticlesSection,
 ]

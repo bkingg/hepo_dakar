@@ -3,9 +3,10 @@ import { groq, SanityDocument } from "next-sanity";
 import { PortableText } from "@portabletext/react";
 import urlFor from "@/lib/urlFor";
 import PageHeader from "@/components/PageHeader";
-import { parseISO, format } from "date-fns";
+import { parseISO, format, formatDistance } from "date-fns";
 import { fr } from "date-fns/locale";
 import { notFound } from "next/navigation";
+import Tags from "@/components/Tags";
 
 interface ArticleTag {
   _key: string;
@@ -51,19 +52,12 @@ export default async function Actualite({
         <PortableText value={actualite.description} />
         <p className="pt-5">
           <i className="bi bi-tag pe-1"></i>
-          {actualite.tags.map((tag: ArticleTag) => (
-            <span key={tag._key}>
-              <span className="badge rounded-pill bg-light text-dark">
-                {tag.label}
-              </span>
-              &nbsp;
-            </span>
-          ))}
+          <Tags tags={actualite.tags} />
         </p>
         <p className="pb-5">
-          Publié le&nbsp;
+          Publié il y a&nbsp;
           <time dateTime={actualite._createdAt}>
-            {format(parseISO(actualite._createdAt), "d LLLL yyyy", {
+            {formatDistance(Date.now(), parseISO(actualite._createdAt), {
               locale: fr,
             })}
           </time>

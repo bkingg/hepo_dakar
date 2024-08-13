@@ -39,12 +39,12 @@ export default defineType({
                         }),
                         defineField({
                             title: 'CTA Texte',
-                            name: 'cta_text',
+                            name: 'ctaText',
                             type: 'string',
                         }),
                         defineField({
                             title: 'CTA URL',
-                            name: 'cta_url',
+                            name: 'ctaUrl',
                             type: 'url',
                             initialValue: "#",
                             validation: (rule) => rule

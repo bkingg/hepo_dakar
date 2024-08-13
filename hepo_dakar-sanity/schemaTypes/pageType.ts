@@ -35,6 +35,7 @@ export default defineType({
       of: [
         { type: 'slider' },
         { type: 'logo_list' },
+        { type: 'latest_articles' },
       ],
       options: {
         sortable: true,

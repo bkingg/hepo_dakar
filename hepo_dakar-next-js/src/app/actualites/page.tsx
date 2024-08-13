@@ -1,17 +1,8 @@
 import PageHeader from "@/components/PageHeader";
-import urlFor from "@/lib/urlFor";
 import { sanityFetch } from "@/sanity/client";
 import { groq, SanityDocument } from "next-sanity";
-import Image from "next/image";
 import Link from "next/link";
-import { parseISO, format } from "date-fns";
-import { fr } from "date-fns/locale";
-
-interface ArticleTag {
-  _key: string;
-  label: string;
-  name: string;
-}
+import ArticleCard from "@/components/ArticleCard";
 
 const ACTUALITES_QUERY = groq`*[
   _type == "article"
@@ -36,56 +27,7 @@ export default async function Actualites() {
               <p>Aucun Article disponible.</p>
             )}
             {actualites.map((actualite) => {
-              return (
-                <Link
-                  href={`/actualites/${actualite.slug.current}`}
-                  className="col"
-                  key={actualite._id}
-                >
-                  <div className="card h-100">
-                    <Image
-                      src={urlFor(actualite.image)
-                        .size(400, 400)
-                        .crop("center")
-                        .url()}
-                      width={0}
-                      height={0}
-                      sizes="100vw"
-                      style={{ width: "100%", height: "auto" }}
-                      alt={actualite.title}
-                      title={actualite.title}
-                      className="card-img-top"
-                    />
-                    <div className="card-body">
-                      <h5 className="card-title">{actualite.title}</h5>
-                      {/* <p className="card-text">
-                      lorem ipsum dolor sit amet
-                    </p> */}
-                    </div>
-                    <div className="card-footer">
-                      {actualite.tags.map((tag: ArticleTag) => (
-                        <span key={tag._key}>
-                          <span className="badge rounded-pill bg-light text-dark">
-                            {tag.label}
-                          </span>
-                          &nbsp;
-                        </span>
-                      ))}
-                    </div>
-                    <div className="card-footer">
-                      Publié le&nbsp;
-                      <time dateTime={actualite._createdAt}>
-                        {format(parseISO(actualite._createdAt), "d LLLL yyyy", {
-                          locale: fr,
-                        })}
-                      </time>
-                    </div>
-                    <div className="card-footer">
-                      <button className="btn btn-primary">Voir Plus</button>
-                    </div>
-                  </div>
-                </Link>
-              );
+              return <ArticleCard key={actualite._id} actualite={actualite} />;
             })}
           </div>
         </div>
