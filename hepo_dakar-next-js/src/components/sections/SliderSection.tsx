@@ -22,7 +22,7 @@ export default function SliderSection({ slides }: SliderSectionProps) {
       <Carousel interval={1000}>
         {slides.map((slide: Slide) => {
           return (
-            <CarouselItem>
+            <CarouselItem key={slide._key}>
               <Image
                 src={urlFor(slide.image).url()}
                 width={1000}
