@@ -1,3 +1,18 @@
+@use "sass:map";
+
+$theme-colors: (
+  'primary': #2c236b,
+  'secondary': #bb984f,
+  'success': #22e11c,
+  'info': #d9ff50,
+  'warning': #ffbe0b,
+  'danger': #ff0000,
+  'light': #ffffff,
+  'dark': #000103,
+);
+
+@import "bootstrap/scss/bootstrap.scss";
+
 // Partials
 @import "navigation";
 

@@ -31,7 +31,6 @@ export default async function Footer() {
   const siteSettings = await sanityFetch<SanityDocument>({
     query: SITE_SETTINGS_QUERY,
   });
-  console.log("settings", siteSettings);
   const footerMenus = siteSettings.footerMenus;
   return (
     <footer className="py-5">
