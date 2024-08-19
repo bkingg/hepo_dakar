@@ -4,6 +4,7 @@ import { PortableText } from "@portabletext/react";
 import Link from "next/link";
 import urlFor from "@/lib/urlFor";
 import PageHeader from "@/components/PageHeader";
+import { notFound } from "next/navigation";
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const PROGRAMME_QUERY = `
@@ -16,6 +17,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
     query: PROGRAMME_QUERY,
   });
 
+  if (!programme) notFound();
+
   const programmeImageUrl = programme.image
     ? urlFor(programme.image).width(1000).url()
     : undefined;
@@ -25,7 +28,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
       <PageHeader image={programmeImageUrl ? programmeImageUrl : undefined}>
         <h1 className="page__title">{programme.title}</h1>
       </PageHeader>
-      <div className="container">
+      <div className="section container">
         <PortableText value={programme.description} />
       </div>
     </>

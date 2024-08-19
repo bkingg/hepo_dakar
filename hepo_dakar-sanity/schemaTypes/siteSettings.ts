@@ -11,12 +11,16 @@ export default defineType({
       title: 'En Tête',
     },
     {
-        name: 'footer',
-        title: 'Pied de Page',
+      name: 'footer',
+      title: 'Pied de Page',
     },
     {
-        name: 'social',
-        title: 'Social',
+      name: 'contact',
+      title: 'Contact',
+    },
+    {
+      name: 'social',
+      title: 'Social',
     },
   ],
   fields: [
@@ -41,6 +45,39 @@ export default defineType({
       title: 'Menu Principal',
       group: 'header',
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      title: 'Titre',
+      name: 'contactPageTitle',
+      type: 'string',
+      group: 'contact'
+    }),
+    defineField({
+      title: 'Afficher la Carte',
+      name: 'showMap',
+      type: 'boolean',
+      group: 'contact'
+    }),
+    defineField({
+      title: 'Tél',
+      name: 'phone',
+      type: 'text',
+      rows: 4,
+      group: 'contact'
+    }),
+    defineField({
+      title: 'Adresse',
+      name: 'address',
+      type: 'text',
+      rows: 5,
+      group: 'contact'
+    }),
+    defineField({
+      title: 'Email',
+      name: 'email',
+      type: 'text',
+      rows: 4,
+      group: 'contact'
     }),
     defineField({
       title: 'Facebook URL',
@@ -99,6 +136,8 @@ export default defineType({
   ],
   initialValue: {
     title: 'Paramètres du Site',
+    contactPageTitle: 'Contact',
+    showMap: true,
   }
 });
   

@@ -48,13 +48,13 @@ export default async function Actualite({
       <PageHeader image={actualiteImageUrl ? actualiteImageUrl : undefined}>
         <h1 className="page__title">{actualite.title}</h1>
       </PageHeader>
-      <div className="container">
+      <div className="section container">
         <PortableText value={actualite.description} />
         <p className="pt-5">
           <i className="bi bi-tag pe-1"></i>
           <Tags tags={actualite.tags} />
         </p>
-        <p className="pb-5">
+        <p>
           Publié il y a&nbsp;
           <time dateTime={actualite._createdAt}>
             {formatDistance(Date.now(), parseISO(actualite._createdAt), {

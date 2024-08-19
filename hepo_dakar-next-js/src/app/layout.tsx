@@ -6,9 +6,7 @@ import "../../styles/globals.css";
 import "../../styles/custom.scss";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import BootstrapClient from "@/components/BootstrapClient";
 import { Providers } from "./providers";
-import { Button } from "@nextui-org/react";
 
 const inter = Inter({ subsets: ["latin"] });
 

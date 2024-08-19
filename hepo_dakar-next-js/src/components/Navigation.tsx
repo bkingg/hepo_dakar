@@ -1,5 +1,5 @@
 import { sanityFetch } from "@/sanity/client";
-import { SanityDocument } from "next-sanity";
+import { groq, SanityDocument } from "next-sanity";
 import Link from "next/link";
 import MenuItem from "./MenuItem";
 import urlFor from "@/lib/urlFor";
@@ -25,28 +25,23 @@ interface MenuItem {
 }
 
 export default async function Navigation() {
-  const SITE_SETTINGS_QUERY = `*[
+  const SITE_SETTINGS_QUERY = groq`*[
     _type == "siteSettings"
   ][0]{
     logo,
-    mainMenu->{handle},
+    mainMenu->{
+      _key, 
+      title, 
+      handle,
+      items
+    },
   }`;
 
   const siteSettings = await sanityFetch<SanityDocument>({
     query: SITE_SETTINGS_QUERY,
   });
 
-  const MENU_QUERY = `*[
-    _type == "menu"
-    && handle.current == "${siteSettings.mainMenu.handle.current}"
-  ][0]{
-    _key, 
-    title, 
-    handle,
-    items
-  }`;
-
-  const menu = await sanityFetch<SanityDocument>({ query: MENU_QUERY });
+  const menu = siteSettings.mainMenu;
 
   console.log(siteSettings);
 

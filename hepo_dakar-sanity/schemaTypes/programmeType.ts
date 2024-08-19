@@ -28,19 +28,11 @@ export default defineType({
       },
     }),
     defineField({
-        title: 'Description',
-        name: 'description',
-        type: 'array',
-        of: [
-          {type: 'block'},
-          {type: 'image'}
-        ]
-    }),
-    defineField({
       title: 'Sections',
       name: 'sections',
       type: 'array',
       of: [
+        { type: 'rich_text' },
         { type: 'slider' },
         { type: 'logo_list' },
         { type: 'latest_articles' },

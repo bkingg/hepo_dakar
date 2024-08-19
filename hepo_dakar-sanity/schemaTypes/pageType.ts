@@ -11,6 +11,11 @@ export default defineType({
       type: 'string',
     }),
     defineField({
+      title: 'Description',
+      name: 'description',
+      type: 'text',
+    }),
+    defineField({
       title: 'Slug',
       name: 'slug',
       type: 'slug',
@@ -20,19 +25,19 @@ export default defineType({
       },
     }),
     defineField({
-        title: 'Description',
-        name: 'description',
-        type: 'array',
-        of: [
-          {type: 'block'},
-          {type: 'image'}
-        ]
+      name: 'image',
+      type: 'image',
+      title: 'Image',
+      options: {
+        hotspot: true,
+      },
     }),
     defineField({
       title: 'Sections',
       name: 'sections',
       type: 'array',
       of: [
+        { type: 'rich_text' },
         { type: 'slider' },
         { type: 'logo_list' },
         { type: 'latest_articles' },

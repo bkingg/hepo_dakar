@@ -19,7 +19,7 @@ export default function LogoListSection({ section }: LogoListSectionProps) {
       <div className="container">
         {section.title !== undefined && <h1>{section.title}</h1>}
         {section.description !== undefined && <p>{section.description}</p>}
-        <div className="section__logo-list__logos row justify-content-evenly">
+        <div className="section__logo-list__logos row justify-content-evenly align-items-center">
           {section.logos.map((logo: Logo) => {
             return (
               <div key={logo._key} className="col-sm-6 col-md-2">

@@ -3,7 +3,7 @@ import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
 import {frFRLocale} from '@sanity/locale-fr-fr'
-import { tags } from 'sanity-plugin-tags'
+import {tags} from 'sanity-plugin-tags'
 
 
 export default defineConfig({
