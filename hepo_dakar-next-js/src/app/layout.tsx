@@ -11,8 +11,12 @@ import { Providers } from "./providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Test Hepo Dakar",
-  description: "Ecole bou nekh",
+  title: {
+    template: "%s | Hepo Dakar",
+    default: "Hepo Dakar",
+  },
+  description:
+    "L'Ecole des Hautes Etudes Polytechniques de Dakar est née de la volonté d'un groupe de professionnels de l'éducation et de la formation professionnelle.",
 };
 
 export default function RootLayout({

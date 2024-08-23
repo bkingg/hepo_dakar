@@ -6,6 +6,10 @@ import PageHeader from "@/components/PageHeader";
 import urlFor from "@/lib/urlFor";
 import { notFound } from "next/navigation";
 import Sections from "@/components/sections/Sections";
+import { Metadata, ResolvingMetadata } from "next";
+
+let page: SanityDocument;
+let pageImageUrl: string;
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const PAGE_QUERY = groq`
@@ -14,13 +18,14 @@ export default async function Page({ params }: { params: { slug: string } }) {
         && defined(slug.current)
         && slug.current == "${params.slug}"
       ][0]{_id, title, slug, image, sections[]}`;
-  const page = await sanityFetch<SanityDocument>({ query: PAGE_QUERY });
+  page = await sanityFetch<SanityDocument>({ query: PAGE_QUERY });
 
   if (!page) notFound();
 
   const pageImageUrl = page.image
     ? urlFor(page.image).size(1000, 1000).crop("center").url()
     : undefined;
+
   return (
     <>
       <PageHeader image={pageImageUrl}>
@@ -30,4 +35,16 @@ export default async function Page({ params }: { params: { slug: string } }) {
       {page.sections && <Sections sections={page.sections} />}
     </>
   );
+}
+
+export async function generateMetadata(
+  { params }: { params: { slug: string } },
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  return {
+    title: page?.title,
+    openGraph: {
+      images: [pageImageUrl],
+    },
+  };
 }

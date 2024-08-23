@@ -1,67 +1,100 @@
+import ContactForm from "@/components/ContactForm";
 import PageHeader from "@/components/PageHeader";
+import urlFor from "@/lib/urlFor";
+import { sanityFetch } from "@/sanity/client";
+import { Metadata } from "next";
+import { groq, PortableText, SanityDocument } from "next-sanity";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description: "Page de Contact",
+};
 
 export default async function Contact() {
+  const SITE_SETTINGS_QUERY = groq`*[
+    _type == "siteSettings"
+  ][0]{
+    contactPageTitle,
+    contactPageImage,
+    showMap,
+    phone,
+    address,
+    email,
+  }`;
+
+  const siteSettings = await sanityFetch<SanityDocument>({
+    query: SITE_SETTINGS_QUERY,
+  });
+
+  const contactPageImageUrl = siteSettings?.image
+    ? urlFor(siteSettings?.image).size(1000, 1000).crop("center").url()
+    : undefined;
   return (
     <>
-      <PageHeader>
+      <PageHeader image={contactPageImageUrl}>
         <h1 className="page__title text-center">Contact</h1>
       </PageHeader>
       <div>
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15434.825079595117!2d-17.4611552!3d14.7291915!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec10d1e41cbc6b5%3A0xa3eb1f5c16eb8af5!2sHepo%20Dakar!5e0!3m2!1sen!2ssn!4v1723955655123!5m2!1sen!2ssn"
-          width="100%"
-          height="400"
-          allowFullScreen={true}
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        ></iframe>
+        {siteSettings.showMap && (
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15434.825079595117!2d-17.4611552!3d14.7291915!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec10d1e41cbc6b5%3A0xa3eb1f5c16eb8af5!2sHepo%20Dakar!5e0!3m2!1sen!2ssn!4v1723955655123!5m2!1sen!2ssn"
+            width="100%"
+            height="400"
+            allowFullScreen={true}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
+        )}
       </div>
       <div className="section container">
-        <h1>Nous Joindre</h1>
-        <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-          doloremque similique et commodi, quas id, nulla voluptates autem rerum
-          consequatur quod. Porro similique fugiat odio adipisci quos molestiae
-          maiores dolorem.
-        </p>
-        <div>
-          <div className="card flex-row flex-wrap align-items-center mb-3 p-4">
-            <div className="card-header border-0">
-              <i className="bi bi-telephone-fill"></i>
+        <div className="row">
+          <div className="col-sm-6">
+            <h1>Nous Joindre</h1>
+            <p>
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam
+              doloremque similique et commodi, quas id, nulla voluptates autem
+              rerum consequatur quod. Porro similique fugiat odio adipisci quos
+              molestiae maiores dolorem.
+            </p>
+            <div className="card flex-row flex-wrap align-items-center mb-3 p-4">
+              <div className="card-header border-0">
+                <i className="bi bi-telephone-fill"></i>
+              </div>
+              <div className="card-block px-2">
+                <h5 className="card-title">Numéro de Tél</h5>
+                <div className="card-text">
+                  <PortableText value={siteSettings.phone} />
+                </div>
+              </div>
             </div>
-            <div className="card-block px-2">
-              <h5 className="card-title">Numéro de Tél</h5>
-              <p className="card-text">
-                <a href="tel:+221338276263">Fixe: +221 33 827 62 63</a>
-                <br />
-                <a href="tel:+221778744123">Portable: +221 77 874 41 23</a>
-              </p>
+            <div className="card flex-row flex-wrap align-items-center mb-3 p-4">
+              <div className="card-header border-0">
+                <i className="bi bi-pin-map-fill"></i>
+              </div>
+              <div className="card-block px-2">
+                <h5 className="card-title">Adresse</h5>
+                <div className="card-text">
+                  <PortableText value={siteSettings.address} />
+                </div>
+              </div>
+            </div>
+            <div className="card flex-row flex-wrap align-items-center mb-3 p-4">
+              <div className="card-header border-0">
+                <i className="bi bi-envelope-at-fill"></i>
+              </div>
+              <div className="card-block px-2">
+                <h5 className="card-title">Email</h5>
+                <div className="card-text">
+                  <PortableText value={siteSettings.email} />
+                </div>
+              </div>
             </div>
           </div>
-          <div className="card flex-row flex-wrap align-items-center mb-3 p-4">
-            <div className="card-header border-0">
-              <i className="bi bi-pin-map-fill"></i>
-            </div>
-            <div className="card-block px-2">
-              <h5 className="card-title">Adresse</h5>
-              <p className="card-text">
-                Sicap Liberté 6 extension <br /> N° 8767 ( vers Camp LeClerc )
-                <br />
-                Dakar, Senegal
-              </p>
-            </div>
-          </div>
-          <div className="card flex-row flex-wrap align-items-center mb-3 p-4">
-            <div className="card-header border-0">
-              <i className="bi bi-envelope-at-fill"></i>
-            </div>
-            <div className="card-block px-2">
-              <h5 className="card-title">Email</h5>
-              <p className="card-text">
-                <a href="mailto:contact@hepo-dakar.com">
-                  contact@hepo-dakar.com
-                </a>
-              </p>
+          <div className="col-sm-6">
+            <div className="card">
+              <div className="card-body">
+                <ContactForm />
+              </div>
             </div>
           </div>
         </div>

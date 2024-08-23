@@ -53,6 +53,15 @@ export default defineType({
       group: 'contact'
     }),
     defineField({
+      title: 'Image',
+      name: 'contactPageImage',
+      type: 'image',
+      group: 'contact',
+      options: {
+        hotspot: true,
+      }
+    }),
+    defineField({
       title: 'Afficher la Carte',
       name: 'showMap',
       type: 'boolean',
@@ -61,22 +70,22 @@ export default defineType({
     defineField({
       title: 'Tél',
       name: 'phone',
-      type: 'text',
-      rows: 4,
-      group: 'contact'
+      group: 'contact',
+      type: 'array',
+      of: [{type: 'textWithLinksBlock'}],
     }),
     defineField({
       title: 'Adresse',
       name: 'address',
-      type: 'text',
-      rows: 5,
+      type: 'array',
+      of: [{type: 'textWithLinksBlock'}],
       group: 'contact'
     }),
     defineField({
       title: 'Email',
       name: 'email',
-      type: 'text',
-      rows: 4,
+      type: 'array',
+      of: [{type: 'textWithLinksBlock'}],
       group: 'contact'
     }),
     defineField({

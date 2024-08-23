@@ -8,6 +8,7 @@ import programmeType from "./programmeType";
 import articleType from "./articleType";
 import latestArticlesSection from "./latestArticlesSection";
 import richTextSectionType from "./richTextSectionType";
+import textWithLinksBlock from "./textWithLinksBlock";
 
 export const schemaTypes = [
     siteSettings,
@@ -20,4 +21,5 @@ export const schemaTypes = [
     sliderSectionType,
     logoListSection,
     latestArticlesSection,
+    textWithLinksBlock,
 ]

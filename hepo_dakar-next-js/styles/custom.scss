@@ -33,19 +33,15 @@ $theme-colors: (
     padding-bottom: 40px;
     margin-bottom: 20px;
     margin-top: 20px;
-    &__logo-list{
+    > h1, p:first{
         text-align: center;
-        h1{
-            text-align: center;
-        }
-        // &__logos{
-        //     display: flex;
-        //     justify-content: space-between;
-        //     align-items: center;
-        //     justify-content: center;
-        //     a{
-        //         flex: 1;
-        //     }
-        // }
     }
+}
+
+.btn-primary {
+    border-radius: 1.75rem;
+    text-transform: uppercase;
+}
+.form-control {
+    border-radius: 1.75rem;
 }

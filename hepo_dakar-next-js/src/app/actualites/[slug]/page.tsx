@@ -7,12 +7,11 @@ import { parseISO, format, formatDistance } from "date-fns";
 import { fr } from "date-fns/locale";
 import { notFound } from "next/navigation";
 import Tags from "@/components/Tags";
+import { ResolvingMetadata, Metadata } from "next";
+import page from "../page";
 
-interface ArticleTag {
-  _key: string;
-  label: string;
-  name: string;
-}
+let actualite: SanityDocument;
+let actualiteImageUrl: string;
 
 export default async function Actualite({
   params,
@@ -33,19 +32,17 @@ export default async function Actualite({
       description, 
       _createdAt
     }`;
-  const actualite = await sanityFetch<SanityDocument>({
+  actualite = await sanityFetch<SanityDocument>({
     query: ACTUALITE_QUERY,
   });
 
   if (!actualite) notFound();
 
-  const actualiteImageUrl = actualite.image
-    ? urlFor(actualite.image).width(1000).url()
-    : undefined;
+  actualiteImageUrl = urlFor(actualite?.image).width(1000).url();
 
   return (
     <>
-      <PageHeader image={actualiteImageUrl ? actualiteImageUrl : undefined}>
+      <PageHeader image={actualiteImageUrl}>
         <h1 className="page__title">{actualite.title}</h1>
       </PageHeader>
       <div className="section container">
@@ -65,4 +62,16 @@ export default async function Actualite({
       </div>
     </>
   );
+}
+
+export async function generateMetadata(
+  { params }: { params: { slug: string } },
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  return {
+    title: actualite?.title,
+    openGraph: {
+      images: [actualiteImageUrl],
+    },
+  };
 }
