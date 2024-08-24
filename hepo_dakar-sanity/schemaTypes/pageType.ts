@@ -41,6 +41,7 @@ export default defineType({
         { type: 'slider' },
         { type: 'logo_list' },
         { type: 'latest_articles' },
+        { type: 'call_to_action' },
       ],
       options: {
         sortable: true,

@@ -9,6 +9,7 @@ import articleType from "./articleType";
 import latestArticlesSection from "./latestArticlesSection";
 import richTextSectionType from "./richTextSectionType";
 import textWithLinksBlock from "./textWithLinksBlock";
+import callToActionSection from "./callToActionSection";
 
 export const schemaTypes = [
     siteSettings,
@@ -22,4 +23,5 @@ export const schemaTypes = [
     logoListSection,
     latestArticlesSection,
     textWithLinksBlock,
+    callToActionSection,
 ]

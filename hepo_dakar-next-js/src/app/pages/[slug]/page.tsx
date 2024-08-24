@@ -17,7 +17,13 @@ export default async function Page({ params }: { params: { slug: string } }) {
         _type == "page"
         && defined(slug.current)
         && slug.current == "${params.slug}"
-      ][0]{_id, title, slug, image, sections[]}`;
+      ][0]{
+            _id, title, slug, image, 
+            sections[]{
+              ...,
+              "brochureUrl": brochure.asset->url,
+            },
+          }`;
   page = await sanityFetch<SanityDocument>({ query: PAGE_QUERY });
 
   if (!page) notFound();

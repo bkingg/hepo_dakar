@@ -8,7 +8,10 @@ export default async function Home() {
     && slug.current == "accueil"
   ][0]{
     _id, 
-    sections[]
+    sections[]{
+      ...,
+      "brochureUrl": brochure.asset->url,
+    },
   }`;
 
   const home = await sanityFetch<SanityDocument>({ query: HOMEPAGE_QUERY });
