@@ -71,9 +71,9 @@ export default async function Navigation() {
       <Container>
         <NavbarBrand href="/">
           <Image
-            src={urlFor(siteSettings.logo).size(300, 300).crop("center").url()}
+            src={urlFor(siteSettings.logo).width(300).crop("center").url()}
             width={200}
-            height={200}
+            height={0}
             alt="Hepo Dakar"
             title="Hepo Dakar"
             className="img-fluid"

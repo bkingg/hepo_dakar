@@ -1,4 +1,4 @@
-import { PortableText } from "@portabletext/react";
+import CustomPortableText from "../CustomPortableText";
 
 interface RichTextSectionProps {
   section: any;
@@ -10,7 +10,7 @@ export default async function RichTextSection({
   return (
     <section className="section">
       <div className="container">
-        <PortableText value={section.richText} />
+        <CustomPortableText content={section.richText} />
       </div>
     </section>
   );
