@@ -15,11 +15,15 @@ $theme-colors: (
 
 // Partials
 @import "navigation";
-
+@import "footer";
 @import "programmes";
 
 // Sections
 @import "sections/logo-list";
+
+// * {
+//     outline: 1px red dotted;
+// }
 
 .page__header {
     position: relative;

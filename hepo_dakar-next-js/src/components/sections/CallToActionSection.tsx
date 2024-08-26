@@ -9,7 +9,6 @@ interface CallToActionSectionProps {
 export default function CallToActionSection({
   section,
 }: CallToActionSectionProps) {
-  console.log("section", section);
   return (
     <section
       style={{
@@ -21,7 +20,7 @@ export default function CallToActionSection({
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
-      className="section text-center bg-primary text-light section__cta"
+      className="section text-center bg-primary text-light section__cta my-0"
     >
       <div className="container">
         {section.title && <h1>{section.title}</h1>}
