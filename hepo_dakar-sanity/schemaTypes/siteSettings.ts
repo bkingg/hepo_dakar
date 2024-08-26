@@ -113,11 +113,35 @@ export default defineType({
       group: 'social'
     }),
     defineField({
-      title: 'Pied de page',
+      name: 'footerBgImage',
+      type: 'image',
+      title: 'Arrière Plan du Pied de Page',
+      group: 'footer',
+      options: {
+        hotspot: true,
+      },
+    }),
+    defineField({
+      name: 'footerLogo',
+      type: 'image',
+      title: 'Logo de Pied de Page',
+      group: 'footer',
+      options: {
+        hotspot: true,
+      },
+    }),
+    defineField({
+      name: 'footerDescription',
+      type: 'text',
+      title: 'Description de L\école',
+      group: 'footer',
+    }),
+    defineField({
+      title: 'Menus du Pied de page',
       name: 'footerMenus',
       group: 'footer',
       type: 'array',
-      validation: (rule) => rule.max(5),
+      validation: (rule) => rule.max(3),
       of: [
         defineField({
           title: 'Menu de Pied de Page',
