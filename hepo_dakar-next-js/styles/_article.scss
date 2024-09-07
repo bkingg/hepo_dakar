@@ -1,0 +1,9 @@
+.article {
+    position: relative;
+    text-decoration: none;
+    .tags{
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+}

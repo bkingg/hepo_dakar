@@ -1,0 +1,8 @@
+.programme {
+    h2 {
+        color: map.get($theme-colors, "primary");
+    }
+    h3{
+        text-decoration: underline;
+    }
+}

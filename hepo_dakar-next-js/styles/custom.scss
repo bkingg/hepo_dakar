@@ -17,9 +17,10 @@ $theme-colors: (
 @import "navigation";
 @import "footer";
 @import "programmes";
+@import "article";
 
 // Sections
-@import "sections/logo-list";
+@import "sections/slider";
 
 // * {
 //     outline: 1px red dotted;

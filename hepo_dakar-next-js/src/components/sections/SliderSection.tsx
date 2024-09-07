@@ -10,6 +10,7 @@ interface SliderSectionProps {
 interface Slide {
   _key: string;
   image: object;
+  captionPosition: string;
   title: string;
   description: string;
   ctaText: string;
@@ -31,9 +32,9 @@ export default function SliderSection({ slides }: SliderSectionProps) {
                 className="d-block w-100 img-fluid"
               />
               {(slide.title || slide.description) && (
-                <CarouselCaption>
-                  <h3>{slide.title}</h3>
-                  <p>{slide.description}</p>
+                <CarouselCaption className={slide.captionPosition}>
+                  {slide.title && <h3>{slide.title}</h3>}
+                  {slide.description && <p>{slide.description}</p>}
                   {slide.ctaText && slide.ctaUrl && (
                     <Link className="btn btn-primary" href={slide.ctaUrl}>
                       {slide.ctaText}

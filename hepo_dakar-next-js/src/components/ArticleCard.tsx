@@ -30,8 +30,12 @@ interface Actualite {
 export default async function ArticleCard({ actualite }: ArticleCardProps) {
   return (
     <>
-      <Link href={`/actualites/${actualite.slug.current}`} className="col mb-5">
+      <Link
+        href={`/actualites/${actualite.slug.current}`}
+        className="article col mb-5"
+      >
         <div className="card h-100">
+          <Tags tags={actualite.tags} />
           <Image
             src={urlFor(actualite.image).size(400, 400).crop("center").url()}
             width={0}
@@ -47,9 +51,6 @@ export default async function ArticleCard({ actualite }: ArticleCardProps) {
             {/* <p className="card-text">
                       lorem ipsum dolor sit amet
                     </p> */}
-          </div>
-          <div className="card-footer">
-            <Tags tags={actualite.tags} />
           </div>
           <div className="card-footer">
             Publié il y a&nbsp;

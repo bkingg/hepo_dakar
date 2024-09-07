@@ -1,6 +1,7 @@
 import { sanityFetch } from "@/sanity/client";
 import { groq, SanityDocument } from "next-sanity";
 import ArticleCard from "../ArticleCard";
+import Link from "next/link";
 
 interface LatestArticlesSectionProps {
   section: any;
@@ -47,6 +48,9 @@ export default async function LatestArticlesSection({
           {actualites.map((actualite) => {
             return <ArticleCard key={actualite._id} actualite={actualite} />;
           })}
+        </div>
+        <div className="text-center my-2">
+          <Link href="/actualites">Voir Plus...</Link>
         </div>
       </div>
     </section>

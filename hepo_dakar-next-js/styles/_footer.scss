@@ -14,6 +14,6 @@
         padding: 30px;
         border-radius: 1.75rem;
         color: white;
-        background-color: lighten(map.get($theme-colors, "primary"), 20%);
+        background-color: rgba(lighten(map.get($theme-colors, "primary"), 20%), 0.5);
     }
 }

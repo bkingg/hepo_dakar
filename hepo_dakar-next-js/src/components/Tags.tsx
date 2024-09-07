@@ -10,7 +10,7 @@ interface Tag {
 
 export default async function Tags({ tags }: TagsProps) {
   return (
-    <>
+    <span className="tags">
       {tags.map((tag: Tag) => (
         <span key={tag._key}>
           <span className="badge rounded-pill bg-light text-dark">
@@ -19,6 +19,6 @@ export default async function Tags({ tags }: TagsProps) {
           &nbsp;
         </span>
       ))}
-    </>
+    </span>
   );
 }

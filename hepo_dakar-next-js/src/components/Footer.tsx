@@ -33,7 +33,8 @@ export default async function Footer() {
     },
     facebook,
     twitter,
-    instagram
+    instagram,
+    linkedin
   }`;
 
   const siteSettings = await sanityFetch<SanityDocument>({
@@ -92,7 +93,7 @@ export default async function Footer() {
                 height={0}
                 alt="Hepo Dakar"
                 title="Hepo Dakar"
-                className="img-fluid"
+                className="img-fluid mb-3"
               />
             )}
             {siteSettings.footerDescription && (
@@ -102,7 +103,7 @@ export default async function Footer() {
           {footerMenus?.map((menu: FooterMenu) => {
             return (
               <div key={menu._key} className="col-sm-6 col-md-3 mb-3">
-                <h5>{menu.title}</h5>
+                <h5 className="mb-3">{menu.title}</h5>
                 <ul className="nav flex-column">
                   {menu.menu.items?.map((link: MenuItem) => (
                     <li className="nav-item mb-2" key={link._key}>
@@ -127,7 +128,7 @@ export default async function Footer() {
           <p>© 2024 Hepo Dakar</p>
           <ul className="list-unstyled d-flex">
             {siteSettings.twitter && (
-              <li className="">
+              <li className="ps-4">
                 <Link
                   className="link-body-emphasis"
                   href={siteSettings.twitter}
@@ -138,7 +139,7 @@ export default async function Footer() {
               </li>
             )}
             {siteSettings.instagram && (
-              <li className="">
+              <li className="ps-4">
                 <Link
                   className="link-body-emphasis"
                   href={siteSettings.instagram}
@@ -149,13 +150,24 @@ export default async function Footer() {
               </li>
             )}
             {siteSettings.facebook && (
-              <li className="">
+              <li className="ps-4">
                 <Link
                   className="link-body-emphasis"
                   href={siteSettings.facebook}
                   target="_blank"
                 >
                   <i className="bi bi-facebook"></i>
+                </Link>
+              </li>
+            )}
+            {siteSettings.linkedin && (
+              <li className="ps-4">
+                <Link
+                  className="link-body-emphasis"
+                  href={siteSettings.linkedin}
+                  target="_blank"
+                >
+                  <i className="bi bi-linkedin"></i>
                 </Link>
               </li>
             )}

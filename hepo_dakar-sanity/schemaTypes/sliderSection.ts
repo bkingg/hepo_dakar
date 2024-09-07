@@ -28,6 +28,18 @@ export default defineType({
                             }
                         }),
                         defineField({
+                            title: 'Position du texte',
+                            name: 'captionPosition',
+                            type: 'string',
+                            options: {
+                                list: [
+                                    {title: 'Gauche', value: 'left'},
+                                    {title: 'Centre', value: 'center'},
+                                    {title: 'Droite', value: 'right'}
+                                ]
+                            }
+                        }),
+                        defineField({
                             title: 'Titre',
                             name: 'title',
                             type: 'string',
