@@ -71,12 +71,12 @@ export default async function Navigation() {
       <Container>
         <NavbarBrand href="/">
           <Image
-            src={urlFor(siteSettings.logo).width(300).crop("center").url()}
+            src={urlFor(siteSettings.logo).url()}
             width={200}
-            height={0}
+            height={60}
             alt="Hepo Dakar"
             title="Hepo Dakar"
-            className="img-fluid"
+            className="img-fluid logo"
           />
         </NavbarBrand>
         <NavbarToggle aria-controls="basic-navbar-nav" />
