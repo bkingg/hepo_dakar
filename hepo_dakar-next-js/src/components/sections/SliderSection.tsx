@@ -25,21 +25,25 @@ export default function SliderSection({ slides }: SliderSectionProps) {
           return (
             <CarouselItem key={slide._key}>
               <Image
-                src={urlFor(slide.image).url()}
-                width={1000}
+                src={urlFor(slide.image).size(1200, 400).crop("center").url()}
+                width={1200}
                 height={400}
                 alt={slide.title}
                 className="d-block w-100 img-fluid"
               />
               {(slide.title || slide.description) && (
                 <CarouselCaption className={slide.captionPosition}>
-                  {slide.title && <h3>{slide.title}</h3>}
-                  {slide.description && <p>{slide.description}</p>}
-                  {slide.ctaText && slide.ctaUrl && (
-                    <Link className="btn btn-primary" href={slide.ctaUrl}>
-                      {slide.ctaText}
-                    </Link>
-                  )}
+                  <div
+                    className={`carousel-caption__wrapper ${slide.captionPosition}`}
+                  >
+                    {slide.title && <h3>{slide.title}</h3>}
+                    {slide.description && <p>{slide.description}</p>}
+                    {slide.ctaText && slide.ctaUrl && (
+                      <Link className="btn btn-primary" href={slide.ctaUrl}>
+                        {slide.ctaText}
+                      </Link>
+                    )}
+                  </div>
                 </CarouselCaption>
               )}
             </CarouselItem>

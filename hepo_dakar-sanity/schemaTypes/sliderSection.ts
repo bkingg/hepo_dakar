@@ -47,7 +47,7 @@ export default defineType({
                         defineField({
                             title: 'Description',
                             name: 'description',
-                            type: 'string',
+                            type: 'text',
                         }),
                         defineField({
                             title: 'CTA Texte',
