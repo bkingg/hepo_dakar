@@ -35,7 +35,7 @@ export default async function Programmes() {
             )}
             {programmes.map((programme) => {
               return (
-                <div>
+                <div key={programme._id}>
                   <Link href={`/programmes/${programme.slug.current}`}>
                     <Image
                       src={urlFor(programme.image)
