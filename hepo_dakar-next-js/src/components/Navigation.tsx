@@ -20,6 +20,13 @@ import {
 interface MenuItem {
   _key: string;
   title: string;
+  linkType: string;
+  internalLink: {
+    _id: string;
+    _type: string;
+    slug: { current: string };
+  };
+  externalUrl: string;
   url: string;
   submenuItems: MenuItem[];
 }
@@ -59,7 +66,14 @@ export default async function Navigation() {
         );
       } else {
         return (
-          <NavLink href={item.url} key={item._key}>
+          <NavLink
+            key={item._key}
+            href={
+              item.linkType === "internal"
+                ? `/${item.internalLink?._type}s/${item.internalLink?.slug.current}`
+                : item.externalUrl
+            }
+          >
             {item.title}
           </NavLink>
         );
