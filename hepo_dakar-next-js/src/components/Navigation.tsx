@@ -22,7 +22,6 @@ interface MenuItem {
   title: string;
   linkType: string;
   internalLink: {
-    _id: string;
     _type: string;
     slug: { current: string };
   };
@@ -37,10 +36,31 @@ export default async function Navigation() {
   ][0]{
     logo,
     mainMenu->{
-      _key, 
+      _id, 
       title, 
       handle,
-      items
+      items[]{
+        _key,
+        title,
+        linkType,
+        internalLink->{_type, slug},
+        externalUrl,
+        submenuItems[]{
+          _key,
+          title,
+          linkType,
+          internalLink->{_type, slug},
+          externalUrl,
+          submenuItems[]{
+            _key,
+            title,
+            linkType,
+            internalLink->{_type, slug},
+            externalUrl,
+            submenuItems[]
+          }
+        }
+      }
     },
   }`;
 
