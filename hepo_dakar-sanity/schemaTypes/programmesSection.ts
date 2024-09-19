@@ -1,9 +1,9 @@
 import { defineField, defineType } from "sanity"
 
 export default defineType({
-    name: 'latest_articles', 
+    name: 'programmes', 
     type: 'object',
-    title: 'Actualités',
+    title: 'Programmes',
     fields: [
         defineField({
             title: 'Titre',
@@ -33,7 +33,7 @@ export default defineType({
         }),
     ],
     initialValue: {
-        title: 'Actualités',
-        description: "Découvrez l'actualité de HEPO Dakar"
+        title: 'Programmes',
+        description: "Découvrez nos programmes"
     }
 });

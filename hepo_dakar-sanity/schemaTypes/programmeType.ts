@@ -37,6 +37,7 @@ export default defineType({
         { type: 'logo_list' },
         { type: 'call_to_action' },
         { type: 'latest_articles' },
+        { type: 'programmes' },
       ],
       options: {
         sortable: true,
