@@ -48,7 +48,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
           <div className="col-lg-4">
             <div className="section">
               <div className="register-to-program__form">
-                <h2>S'inscrire</h2>
+                <h2>S&apos;inscrire</h2>
                 <RegisterToProgramForm programme={programme} />
               </div>
             </div>
