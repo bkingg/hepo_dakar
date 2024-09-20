@@ -33,11 +33,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   const programmeImageUrl = programme.image
     ? urlFor(programme.image).width(1000).url()
-    : undefined;
+    : "";
 
   return (
     <div className="programme">
-      <PageHeader image={programmeImageUrl ? programmeImageUrl : undefined}>
+      <PageHeader image={programmeImageUrl}>
         <h1 className="page__title">{programme.title}</h1>
       </PageHeader>
       <div className="container">
