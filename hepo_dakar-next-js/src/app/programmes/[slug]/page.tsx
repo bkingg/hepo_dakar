@@ -7,6 +7,7 @@ import PageHeader from "@/components/PageHeader";
 import { notFound } from "next/navigation";
 import Sections from "@/components/sections/Sections";
 import { ResolvingMetadata, Metadata } from "next";
+import RegisterToProgramForm from "@/components/RegisterToProgramForm";
 
 let programme: SanityDocument;
 let programmeImageUrl: string;
@@ -39,7 +40,21 @@ export default async function Page({ params }: { params: { slug: string } }) {
       <PageHeader image={programmeImageUrl ? programmeImageUrl : undefined}>
         <h1 className="page__title">{programme.title}</h1>
       </PageHeader>
-      {programme.sections && <Sections sections={programme.sections} />}
+      <div className="container">
+        <div className="row">
+          <div className="programme__content col-lg-8">
+            {programme.sections && <Sections sections={programme.sections} />}
+          </div>
+          <div className="col-lg-4">
+            <div className="section">
+              <div className="register-to-program__form">
+                <h2>S'inscrire</h2>
+                <RegisterToProgramForm programme={programme} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

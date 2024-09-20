@@ -5,6 +5,7 @@ import { groq, SanityDocument } from "next-sanity";
 import Link from "next/link";
 import Image from "next/image";
 import { Metadata } from "next";
+import ProgrammeCard from "@/components/ProgrammeCard";
 
 export const metadata: Metadata = {
   title: "Programmes",
@@ -31,28 +32,14 @@ export default async function Programmes() {
         <div className="container">
           <div className="row row-cols-1 row-cols-md-3 row-cols-xl-4">
             {programmes.length === undefined && (
-              <p>Aucun Article disponible.</p>
+              <p>Aucun Programme disponible.</p>
             )}
             {programmes.map((programme) => {
+              const programmeImageUrl = programme.image
+                ? urlFor(programme.image).size(500, 500).fit("crop").url()
+                : "";
               return (
-                <div key={programme._id}>
-                  <Link href={`/programmes/${programme.slug.current}`}>
-                    <Image
-                      src={urlFor(programme.image)
-                        .size(400, 400)
-                        .crop("center")
-                        .url()}
-                      width={0}
-                      height={0}
-                      sizes="100vw"
-                      style={{ width: "100%", height: "auto" }}
-                      alt={programme.title}
-                      title={programme.title}
-                      className="card-img-top"
-                    />
-                    <h3>{programme.title}</h3>
-                  </Link>
-                </div>
+                <ProgrammeCard key={programme._id} programme={programme} />
               );
             })}
           </div>

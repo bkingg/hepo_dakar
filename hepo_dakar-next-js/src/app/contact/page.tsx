@@ -28,7 +28,7 @@ export default async function Contact() {
 
   const contactPageImageUrl = siteSettings?.image
     ? urlFor(siteSettings?.image).size(1000, 1000).crop("center").url()
-    : undefined;
+    : "";
   return (
     <>
       <PageHeader image={contactPageImageUrl}>
@@ -56,9 +56,9 @@ export default async function Contact() {
               rerum consequatur quod. Porro similique fugiat odio adipisci quos
               molestiae maiores dolorem.
             </p>
-            <div className="card flex-row flex-wrap align-items-center mb-3 p-4">
+            <div className="card contact__info flex-row flex-wrap align-items-center mb-3 p-4">
               <div className="card-header border-0">
-                <i className="bi bi-telephone-fill"></i>
+                <i className="bi bi-telephone"></i>
               </div>
               <div className="card-block px-2">
                 <h5 className="card-title">Numéro de Tél</h5>
@@ -67,9 +67,9 @@ export default async function Contact() {
                 </div>
               </div>
             </div>
-            <div className="card flex-row flex-wrap align-items-center mb-3 p-4">
+            <div className="card contact__info flex-row flex-wrap align-items-center mb-3 p-4">
               <div className="card-header border-0">
-                <i className="bi bi-pin-map-fill"></i>
+                <i className="bi bi-pin-map"></i>
               </div>
               <div className="card-block px-2">
                 <h5 className="card-title">Adresse</h5>
@@ -78,9 +78,9 @@ export default async function Contact() {
                 </div>
               </div>
             </div>
-            <div className="card flex-row flex-wrap align-items-center mb-3 p-4">
+            <div className="card contact__info flex-row flex-wrap align-items-center mb-3 p-4">
               <div className="card-header border-0">
-                <i className="bi bi-envelope-at-fill"></i>
+                <i className="bi bi-envelope-at"></i>
               </div>
               <div className="card-block px-2">
                 <h5 className="card-title">Email</h5>
@@ -91,10 +91,8 @@ export default async function Contact() {
             </div>
           </div>
           <div className="col-sm-6">
-            <div className="card">
-              <div className="card-body">
-                <ContactForm />
-              </div>
+            <div className="contact__form">
+              <ContactForm />
             </div>
           </div>
         </div>

@@ -1,8 +1,32 @@
 .programme {
-    h2 {
-        color: map.get($theme-colors, "primary");
+    &__content{
+        h2 {
+            color: map.get($theme-colors, "primary");
+            margin-top: 40px;
+            &:after{
+                content: ' ';
+                background-color: map.get($theme-colors, "secondary");
+                display: block;
+                width: 100px;
+                height: 5px;
+                transform: scaleX(1);
+                transition: all 0.2s ease-in;
+            }
+            &:first-of-type{
+                margin-top: 0;
+            }
+        }
     }
-    h3{
-        text-decoration: underline;
+}
+
+.register-to-program__form{
+    border-radius: 1.75rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 40px 30px;
+    input, textarea, select{
+        background-color: #f7f7f7;
+        border: none;
+        padding: 10px 20px;
+        text-overflow: ellipsis;
     }
 }

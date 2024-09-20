@@ -22,12 +22,15 @@ export default function SliderSection({ slides }: SliderSectionProps) {
     <section className="section__slider">
       <Carousel interval={1000}>
         {slides.map((slide: Slide) => {
+          const slideImageUrl = slide.image
+            ? urlFor(slide.image).size(1200, 500).fit("crop").url()
+            : "";
           return (
             <CarouselItem key={slide._key}>
               <Image
-                src={urlFor(slide.image).size(1200, 400).crop("center").url()}
+                src={slideImageUrl}
                 width={1200}
-                height={400}
+                height={500}
                 alt={slide.title}
                 className="d-block w-100 img-fluid"
               />

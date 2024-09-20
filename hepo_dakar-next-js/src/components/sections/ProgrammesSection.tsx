@@ -18,7 +18,8 @@ interface Actualite {
 const PROGRAMMES_QUERY = groq`*[
   _type == "programme"
   && defined(slug.current)
-][0..3]
+  && defined(image)
+][0..7]
 {_id, title, slug, image}`;
 
 export default async function ProgrammesSection({

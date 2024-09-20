@@ -16,8 +16,8 @@ interface Programme {
 
 export default async function ProgrammeCard({ programme }: ProgrammeCardProps) {
   const programmeImageUrl = programme.image
-    ? urlFor(programme.image).size(400, 400).crop("center").url()
-    : undefined;
+    ? urlFor(programme.image).size(500, 500).fit("crop").url()
+    : "";
   return (
     <>
       <Link
@@ -40,9 +40,6 @@ export default async function ProgrammeCard({ programme }: ProgrammeCardProps) {
             {/* <p className="card-text">
                       lorem ipsum dolor sit amet
                     </p> */}
-          </div>
-          <div className="card-footer">
-            <button className="btn btn-primary">Voir Plus</button>
           </div>
         </div>
       </Link>

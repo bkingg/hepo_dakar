@@ -11,6 +11,12 @@ $theme-colors: (
   'dark': #000103,
 );
 
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+
+@import "mixins";
 @import "bootstrap/scss/bootstrap.scss";
 
 // Partials
@@ -18,6 +24,7 @@ $theme-colors: (
 @import "footer";
 @import "programmes";
 @import "article";
+@import "contact";
 
 // Sections
 @import "sections/slider";
@@ -39,6 +46,7 @@ h1, h2, h3, h4, h5, h6 {
     padding-top: 80px;
     padding-bottom: 80px;
     color: #fff;
+    text-align: center;
 }
 
 .section{

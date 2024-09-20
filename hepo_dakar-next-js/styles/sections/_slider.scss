@@ -1,5 +1,14 @@
 .section__slider{
-    .carousel-caption{        
+    .carousel-caption{ 
+        
+        h3{
+            text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+        }
+        
+        p{
+            color: #212529;
+            display: none;
+        }
 
         @include media-breakpoint-up(sm) {
             position: absolute;
@@ -32,13 +41,13 @@
                     padding-left: 25px;
                 }
             }
-        }
-                  
-        h3{
-            color: map.get($theme-colors, 'primary');
-        }
-        p{
-            color: #212529;
+            h3{
+                color: map.get($theme-colors, 'primary');
+                text-shadow: none;
+            }
+            p{
+                display: block;
+            }
         }
     }
 }

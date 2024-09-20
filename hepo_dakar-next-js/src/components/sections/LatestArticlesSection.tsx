@@ -50,7 +50,9 @@ export default async function LatestArticlesSection({
           })}
         </div>
         <div className="text-center my-2">
-          <Link href="/actualites">Voir Plus...</Link>
+          <Link href="/actualites" className="btn btn-primary">
+            Voir Plus...
+          </Link>
         </div>
       </div>
     </section>

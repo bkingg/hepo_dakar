@@ -28,6 +28,9 @@ interface Actualite {
 }
 
 export default async function ArticleCard({ actualite }: ArticleCardProps) {
+  const articleImageUrl = actualite.image
+    ? urlFor(actualite.image).size(500, 500).fit("crop").url()
+    : "";
   return (
     <>
       <Link
@@ -37,7 +40,7 @@ export default async function ArticleCard({ actualite }: ArticleCardProps) {
         <div className="card h-100">
           <Tags tags={actualite.tags} />
           <Image
-            src={urlFor(actualite.image).size(400, 400).crop("center").url()}
+            src={articleImageUrl}
             width={0}
             height={0}
             sizes="100vw"
@@ -59,9 +62,6 @@ export default async function ArticleCard({ actualite }: ArticleCardProps) {
                 locale: fr,
               })}
             </time>
-          </div>
-          <div className="card-footer">
-            <button className="btn btn-primary">Voir Plus</button>
           </div>
         </div>
       </Link>
