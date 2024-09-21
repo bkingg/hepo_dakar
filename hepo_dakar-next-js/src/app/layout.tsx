@@ -7,6 +7,7 @@ import "../../styles/custom.scss";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Providers } from "./providers";
+import WhatsAppWidget from "@/components/WhatsappWidget";
 
 const hepoFont = Montserrat({
   subsets: ["latin"],
@@ -35,6 +36,7 @@ export default function RootLayout({
           <main>{children}</main>
           <Footer />
         </Providers>
+        <WhatsAppWidget />
       </body>
     </html>
   );

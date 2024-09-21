@@ -11,6 +11,9 @@ export default async function Home() {
     sections[]{
       ...,
       "brochureUrl": brochure.asset->url,
+      programmes[]->{
+        _id, title, slug, image
+      }
     },
   }`;
 

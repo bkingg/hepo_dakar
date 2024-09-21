@@ -1,0 +1,32 @@
+.whatsapp{
+    position: relative;
+    background-color: none;
+    transform: scale(1);
+    transition: all 0.4s;
+    &__message{
+        position: absolute;
+        background-color: rgba(255, 255, 255, 0.5); 
+        backdrop-filter: blur(5px);
+        display: inline-block;
+        color: #212529;
+        right: calc(100%);
+        width: auto;
+        white-space: nowrap;
+        font-size: 14px;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 1.78rem;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX(50%);
+        transition: all 0.4s;
+    }
+    &:hover{
+        transform: scale(1.2);
+        .whatsapp__message{
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-15px);
+        }
+    }
+}

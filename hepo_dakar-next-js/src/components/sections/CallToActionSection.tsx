@@ -38,6 +38,7 @@ export default function CallToActionSection({
                 download
               >
                 {section.ctaText}
+                <i className="bi bi-download ps-2"></i>
               </a>
             )))}
       </div>

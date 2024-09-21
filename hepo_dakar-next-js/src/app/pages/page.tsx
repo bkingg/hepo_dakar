@@ -1,12 +1,26 @@
 import PageHeader from "@/components/PageHeader";
+import urlFor from "@/lib/urlFor";
 import { sanityFetch } from "@/sanity/client";
 import { groq, SanityDocument } from "next-sanity";
 import Link from "next/link";
+import Image from "next/image";
 
 const PAGES_QUERY = groq`*[
   _type == "page"
   && defined(slug.current)
-]{_id, title, slug, image, description}`;
+]{_id, 
+  title, 
+  slug, 
+  image, 
+  description,
+  sections[]{
+    ...,
+    "brochureUrl": brochure.asset->url,
+    programmes[]->{
+      _id, title, slug, image
+    }
+  }
+}`;
 
 export default async function Pages() {
   const pages = await sanityFetch<SanityDocument[]>({ query: PAGES_QUERY });
@@ -16,14 +30,43 @@ export default async function Pages() {
       <PageHeader>
         <h1 className="page__title">Pages</h1>
       </PageHeader>
-      <div className="container">
-        <ul>
-          {pages.map((page) => (
-            <li className="bg-white p-4 rounded-lg" key={page._id}>
-              <Link href={`/pages/${page.slug.current}`}>{page.title}</Link>
-            </li>
-          ))}
-        </ul>
+      <div className="section container">
+        <div className="row">
+          {pages.map((page) => {
+            const pageImageUrl = page.image
+              ? urlFor(page.image).size(500, 500).fit("crop").url()
+              : "";
+            return (
+              <Link
+                href={`/pages/${page.slug.current}`}
+                className="article col-sm-6 col-md-3"
+                key={page._id}
+              >
+                <div className="card h-100">
+                  <Image
+                    src={pageImageUrl}
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                    style={{ width: "100%", height: "auto" }}
+                    alt={page.title}
+                    title={page.title}
+                    className="card-img-top"
+                  />
+                  <div className="card-body">
+                    <h5 className="card-title">{page.title}</h5>
+                    {/* <p className="card-text">
+                      lorem ipsum dolor sit amet
+                    </p> */}
+                    <button className="btn btn-light">
+                      <i className="bi bi-arrow-right"></i>
+                    </button>
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </>
   );

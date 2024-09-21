@@ -16,6 +16,20 @@ export default defineType({
             type: 'text',
         }),
         defineField({
+            name: 'programmes',
+            title: 'Programmes Phares',
+            type: 'array',
+            of: [
+              {
+                type: 'reference',
+                to: [
+                  { type: 'programme' },
+                ],
+              },
+            ],
+            validation: (Rule) => Rule.max(8).warning('Vous ne pouvez ajouter que 8 programmes phares.'),
+        }),
+        defineField({
             title: 'CTA Texte',
             name: 'ctaText',
             type: 'string',
@@ -33,7 +47,7 @@ export default defineType({
         }),
     ],
     initialValue: {
-        title: 'Programmes',
-        description: "Découvrez nos programmes"
+        title: 'Programmes Phares',
+        description: "Découvrez nos programmes les plus populaires"
     }
 });
