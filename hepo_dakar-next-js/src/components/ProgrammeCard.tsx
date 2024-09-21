@@ -4,7 +4,7 @@ import urlFor from "@/lib/urlFor";
 import Image from "next/image";
 
 interface ProgrammeCardProps {
-  programme: Programme;
+  programme: Programme | SanityDocument;
 }
 
 interface Programme {
