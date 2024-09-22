@@ -17,7 +17,12 @@ interface MenuItems {
 interface MenuItem {
   _key: string;
   title: string;
-  url: string;
+  linkType: string;
+  internalLink: {
+    _type: string;
+    slug: { current: string };
+  };
+  externalUrl: string;
 }
 
 export default async function Footer() {
@@ -29,7 +34,18 @@ export default async function Footer() {
     footerLogo,
     footerDescription,
     footerMenus[]{
-      _key, title, menu->{items}
+      _key, title, menu->{
+        items[]{
+          _key,
+          title,
+          linkType,
+          internalLink->{
+            _type,
+            slug
+          },
+          externalUrl
+        }
+      }
     },
     facebook,
     twitter,
@@ -100,19 +116,23 @@ export default async function Footer() {
               <p>{siteSettings.footerDescription}</p>
             )}
           </div>
-          {footerMenus?.map((menu: FooterMenu) => {
+          {footerMenus?.map(({ _key, title, menu }: FooterMenu) => {
+            console.log("menu", menu);
             return (
-              <div key={menu._key} className="col-sm-6 col-md-3 mb-3">
-                <h5 className="mb-3">{menu.title}</h5>
+              <div key={_key} className="col-sm-6 col-md-3 mb-3">
+                <h5 className="mb-3">{title}</h5>
                 <ul className="nav flex-column">
-                  {menu.menu.items?.map((link: MenuItem) => (
-                    <li className="nav-item mb-2" key={link._key}>
+                  {menu.items.map((item: MenuItem) => (
+                    <li className="nav-item mb-2" key={item._key}>
                       <Link
-                        key={link._key}
                         className="nav-link p-0"
-                        href={link.url}
+                        href={
+                          item.linkType === "internal"
+                            ? `/${item.internalLink?._type}s/${item.internalLink?.slug.current}`
+                            : item.externalUrl
+                        }
                       >
-                        {link.title}
+                        {item.title}
                       </Link>
                     </li>
                   ))}

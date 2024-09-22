@@ -23,6 +23,7 @@
                 &:hover, &.show{
                     > .dropdown-menu{
                         display: block;
+                        visibility: visible;
                     }
                 }
             }

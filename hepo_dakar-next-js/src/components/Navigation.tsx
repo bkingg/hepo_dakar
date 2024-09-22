@@ -1,7 +1,6 @@
 import { sanityFetch } from "@/sanity/client";
 import { groq, SanityDocument } from "next-sanity";
 import Link from "next/link";
-import MenuItem from "./MenuItem";
 import urlFor from "@/lib/urlFor";
 import Image from "next/image";
 import {
@@ -26,7 +25,6 @@ interface MenuItem {
     slug: { current: string };
   };
   externalUrl: string;
-  url: string;
   submenuItems: MenuItem[];
 }
 
@@ -119,64 +117,5 @@ export default async function Navigation() {
         </NavbarCollapse>
       </Container>
     </Navbar>
-  );
-
-  return (
-    <>
-      <Navbar expand="lg" className="bg-body-tertiary">
-        <Container>
-          <NavbarBrand href="#home">React-Bootstrap</NavbarBrand>
-          <NavbarToggle aria-controls="basic-navbar-nav" />
-          <NavbarCollapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <NavLink href="#home">Home</NavLink>
-              <NavLink href="#link">Link</NavLink>
-              <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                <DropdownItem href="#action/3.1">Action</DropdownItem>
-                <DropdownItem href="#action/3.2">Another action</DropdownItem>
-                <DropdownItem href="#action/3.3">Something</DropdownItem>
-                <DropdownDivider />
-                <DropdownItem href="#action/3.4">Separated link</DropdownItem>
-              </NavDropdown>
-            </Nav>
-          </NavbarCollapse>
-        </Container>
-      </Navbar>
-      <nav className="header navbar navbar-expand-sm">
-        <div className="container">
-          <Link className="navbar-brand" href="/">
-            <Image
-              src={urlFor(siteSettings.logo)
-                .size(300, 300)
-                .crop("center")
-                .url()}
-              width={200}
-              height={200}
-              alt="Hepo Dakar"
-              title="Hepo Dakar"
-              className="img-fluid"
-            />
-          </Link>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul className="navbar-nav">
-              {menu.items.map((item: MenuItem) => {
-                return <MenuItem isRoot={true} item={item} key={item._key} />;
-              })}
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </>
   );
 }

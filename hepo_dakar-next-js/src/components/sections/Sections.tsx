@@ -5,6 +5,7 @@ import RichTextSection from "./RichTextSection";
 import SliderSection from "./SliderSection";
 import CallToActionSection from "./CallToActionSection";
 import ProgrammesSection from "./ProgrammesSection";
+import FAQSection from "./FAQSection";
 
 interface SectionsProps {
   sections: Section[];
@@ -22,6 +23,9 @@ export default async function Sections({ sections }: SectionsProps) {
           )) ||
           (section._type == "slider" && (
             <SliderSection key={section._key} slides={section.slides} />
+          )) ||
+          (section._type == "faq" && (
+            <FAQSection key={section._key} section={section} />
           )) ||
           (section._type == "logo_list" && (
             <LogoListSection key={section._key} section={section} />
