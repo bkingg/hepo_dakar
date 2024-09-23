@@ -39,6 +39,7 @@ export default defineType({
       of: [
         { type: 'rich_text' },
         { type: 'slider' },
+        { type: 'faq' },
         { type: 'logo_list' },
         { type: 'latest_articles' },
         { type: 'call_to_action' },

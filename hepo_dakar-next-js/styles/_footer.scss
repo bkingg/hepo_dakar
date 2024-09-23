@@ -1,8 +1,12 @@
 .footer {
     background-color: map.get($theme-colors, "primary");
     color: white;
+    font-size: 12px;
     i{
         color: white;
+    }
+    h5{
+        font-size: 1rem;
     }
     a.nav-link {
         color: white;
@@ -15,5 +19,8 @@
         border-radius: 1.75rem;
         color: white;
         background-color: rgba(lighten(map.get($theme-colors, "primary"), 20%), 0.5);
+    }
+    &__social{
+        font-size: 1.25rem;
     }
 }

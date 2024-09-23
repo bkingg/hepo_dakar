@@ -12,6 +12,7 @@ interface Programme {
   title: string;
   slug: { current: string };
   image: string;
+  niveau?: string;
 }
 
 export default async function ProgrammeCard({ programme }: ProgrammeCardProps) {
@@ -22,7 +23,7 @@ export default async function ProgrammeCard({ programme }: ProgrammeCardProps) {
     <>
       <Link
         href={`/programmes/${programme.slug.current}`}
-        className="article col mb-5"
+        className="programme col mb-5"
       >
         <div className="card h-100">
           <Image
@@ -36,6 +37,9 @@ export default async function ProgrammeCard({ programme }: ProgrammeCardProps) {
             className="card-img-top"
           />
           <div className="card-body">
+            <span className="niveau badge rounded-pill text-bg-light">
+              {programme.niveau}
+            </span>
             <h5 className="card-title">{programme.title}</h5>
             {/* <p className="card-text">
                       lorem ipsum dolor sit amet

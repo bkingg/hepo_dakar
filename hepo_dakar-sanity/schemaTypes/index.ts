@@ -13,6 +13,7 @@ import sliderSection from "./sliderSection";
 import logoListSection from "./logoListSection";
 import callToActionSection from "./callToActionSection";
 import programmesSection from "./programmesSection";
+import faqSection from "./faqSection";
 
 export const schemaTypes = [
     siteSettings,
@@ -25,6 +26,7 @@ export const schemaTypes = [
     // Sections
     richTextSection,
     sliderSection,
+    faqSection,
     logoListSection,
     latestArticlesSection,
     textWithLinksBlock,

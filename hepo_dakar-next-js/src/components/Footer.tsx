@@ -146,7 +146,7 @@ export default async function Footer() {
       <div className="container">
         <div className="d-flex flex-column flex-sm-row justify-content-between py-4 border-top">
           <p>© 2024 Hepo Dakar</p>
-          <ul className="list-unstyled d-flex">
+          <ul className="list-unstyled d-flex footer__social">
             {siteSettings.twitter && (
               <li className="ps-4">
                 <Link
