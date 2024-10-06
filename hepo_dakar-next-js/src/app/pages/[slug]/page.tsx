@@ -8,33 +8,30 @@ import { notFound } from "next/navigation";
 import Sections from "@/components/sections/Sections";
 import { Metadata, ResolvingMetadata } from "next";
 
-let page: SanityDocument;
-let pageImageUrl: string;
-
 export default async function Page({ params }: { params: { slug: string } }) {
   const PAGE_QUERY = groq`
-      *[
-        _type == "page"
-        && defined(slug.current)
-        && slug.current == "${params.slug}"
-      ][0]{
-            _id, title, slug, image, 
-            sections[]{
-              ...,
-              "brochureUrl": brochure.asset->url,
-            },
-          }`;
-  page = await sanityFetch<SanityDocument>({ query: PAGE_QUERY });
+    *[
+      _type == "page"
+      && defined(slug.current)
+      && slug.current == "${params.slug}"
+    ][0]{
+      _id, title, slug, image, 
+      sections[]{
+        ...,
+        "brochureUrl": brochure.asset->url,
+      },
+    }`;
+  const page = await sanityFetch<SanityDocument>({ query: PAGE_QUERY });
 
   if (!page) notFound();
 
-  const pageImageUrl = page.image
+  page.imageUrl = page.image
     ? urlFor(page.image).size(1000, 1000).crop("center").url()
     : undefined;
 
   return (
     <>
-      <PageHeader image={pageImageUrl}>
+      <PageHeader image={page.imageUrl}>
         {page.title && <h1 className="page__title">{page.title}</h1>}
         {page.description && <p>{page.description}</p>}
       </PageHeader>
@@ -47,10 +44,20 @@ export async function generateMetadata(
   { params }: { params: { slug: string } },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
+  const PAGE_QUERY = groq`
+    *[
+      _type == "page"
+      && defined(slug.current)
+      && slug.current == "${params.slug}"
+    ][0]{
+      title, image
+    }`;
+  const page = await sanityFetch<SanityDocument>({ query: PAGE_QUERY });
+
   return {
     title: page?.title,
     openGraph: {
-      images: [pageImageUrl],
+      images: [page?.imageUrl],
     },
   };
 }

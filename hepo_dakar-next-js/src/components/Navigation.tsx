@@ -28,40 +28,33 @@ interface MenuItem {
   submenuItems: MenuItem[];
 }
 
-export default async function Navigation() {
-  const SITE_SETTINGS_QUERY = groq`*[
-    _type == "siteSettings"
-  ][0]{
-    logo,
-    mainMenu->{
-      _id, 
-      title, 
-      handle,
-      items[]{
-        _key,
-        title,
-        linkType,
-        internalLink->{_type, slug},
-        externalUrl,
-        submenuItems[]{
-          _key,
-          title,
-          linkType,
-          internalLink->{_type, slug},
-          externalUrl,
-          submenuItems[]{
-            _key,
-            title,
-            linkType,
-            internalLink->{_type, slug},
-            externalUrl,
-            submenuItems[]
-          }
+const MENU_ITEM_FRAGMENT = groq`
+  _key,
+  title,
+  linkType,
+  internalLink->{_id, _type, title, slug, image},
+  externalUrl,
+  submenuItems[]`;
+
+const SITE_SETTINGS_QUERY = groq`*[
+  _type == "siteSettings"
+][0]{
+  logo,
+  mainMenu->{
+    _id, 
+    title, 
+    handle,
+    items[]{
+      ${MENU_ITEM_FRAGMENT}{
+        ${MENU_ITEM_FRAGMENT}{
+          ${MENU_ITEM_FRAGMENT}
         }
       }
-    },
-  }`;
+    }
+  },
+}`;
 
+export default async function Navigation() {
   const siteSettings = await sanityFetch<SanityDocument>({
     query: SITE_SETTINGS_QUERY,
   });

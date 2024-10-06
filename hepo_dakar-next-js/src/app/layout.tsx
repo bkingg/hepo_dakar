@@ -6,7 +6,6 @@ import "../../styles/globals.css";
 import "../../styles/custom.scss";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Providers } from "./providers";
 import WhatsAppWidget from "@/components/WhatsappWidget";
 
 const hepoFont = Montserrat({
@@ -31,11 +30,9 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className={hepoFont.className}>
-        <Providers>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </Providers>
+        <Header />
+        <main>{children}</main>
+        <Footer />
         <WhatsAppWidget />
       </body>
     </html>

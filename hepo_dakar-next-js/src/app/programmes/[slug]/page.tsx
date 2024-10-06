@@ -10,34 +10,34 @@ import { ResolvingMetadata, Metadata } from "next";
 import RegisterToProgramForm from "@/components/RegisterToProgramForm";
 
 let programme: SanityDocument;
-let programmeImageUrl: string;
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const PROGRAMME_QUERY = groq`
-      *[
-        _type == "programme"
-        && defined(slug.current)
-        && slug.current == "${params.slug}"
-      ][0]{
-        _id, title, image, slug, description, 
-        sections[]{
-          ...,
-          "brochureUrl": brochure.asset->url,
-        },
-      }`;
+  *[
+    _type == "programme"
+    && defined(slug.current)
+    && slug.current == "${params.slug}"
+  ][0]{
+    _id, title, image, slug, description, 
+    sections[]{
+      ...,
+      "brochureUrl": brochure.asset->url,
+    },
+  }`;
+
   programme = await sanityFetch<SanityDocument>({
     query: PROGRAMME_QUERY,
   });
 
   if (!programme) notFound();
 
-  const programmeImageUrl = programme.image
+  programme.imageUrl = programme.image
     ? urlFor(programme.image).width(1000).url()
     : "";
 
   return (
     <div className="programme">
-      <PageHeader image={programmeImageUrl}>
+      <PageHeader image={programme.imageUrl}>
         <h1 className="page__title">{programme.title}</h1>
       </PageHeader>
       <div className="container">
@@ -63,10 +63,22 @@ export async function generateMetadata(
   { params }: { params: { slug: string } },
   parent: ResolvingMetadata
 ): Promise<Metadata> {
+  const PROGRAMME_QUERY = groq`
+  *[
+    _type == "programme"
+    && defined(slug.current)
+    && slug.current == "${params.slug}"
+  ][0]{
+    title, image
+  }`;
+
+  const programme = await sanityFetch<SanityDocument>({
+    query: PROGRAMME_QUERY,
+  });
   return {
     title: programme?.title,
     openGraph: {
-      images: [programmeImageUrl],
+      images: [programme?.imageUrl],
     },
   };
 }

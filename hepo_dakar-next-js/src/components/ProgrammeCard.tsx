@@ -1,6 +1,5 @@
 import { SanityDocument } from "next-sanity";
 import Link from "next/link";
-import urlFor from "@/lib/urlFor";
 import Image from "next/image";
 
 interface ProgrammeCardProps {
@@ -11,14 +10,11 @@ interface Programme {
   _id: string;
   title: string;
   slug: { current: string };
-  image: string;
+  imageUrl: string;
   niveau?: string;
 }
 
-export default async function ProgrammeCard({ programme }: ProgrammeCardProps) {
-  const programmeImageUrl = programme.image
-    ? urlFor(programme.image).size(500, 500).fit("crop").url()
-    : "";
+export default function ProgrammeCard({ programme }: ProgrammeCardProps) {
   return (
     <>
       <Link
@@ -27,7 +23,7 @@ export default async function ProgrammeCard({ programme }: ProgrammeCardProps) {
       >
         <div className="card h-100">
           <Image
-            src={programmeImageUrl}
+            src={programme.imageUrl ? programme.imageUrl : "/placeholder.svg"}
             width={0}
             height={0}
             sizes="100vw"
