@@ -33,6 +33,7 @@ export default defineType({
       type: 'array',
       of: [
         { type: 'rich_text' },
+        { type: 'media_text' },
         { type: 'slider' },
         { type: 'faq' },
         { type: 'logo_list' },

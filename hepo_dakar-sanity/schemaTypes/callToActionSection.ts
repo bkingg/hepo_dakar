@@ -37,7 +37,7 @@ export default defineType({
             options: {
                 accept: 'application/pdf'
             },
-            hidden: ({ parent }) => !!parent?.btnUrl,
+            hidden: ({ parent }) => !!parent?.ctaUrl,
         }),
         defineField({
             title: 'URL de l\'appel à l\'action',

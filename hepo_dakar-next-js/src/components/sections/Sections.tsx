@@ -6,6 +6,7 @@ import SliderSection from "./SliderSection";
 import CallToActionSection from "./CallToActionSection";
 import ProgrammesSection from "./ProgrammesSection";
 import FAQSection from "./FAQSection";
+import MediaTextSection from "./MediaTextSection";
 
 interface SectionsProps {
   sections: Section[];
@@ -20,6 +21,9 @@ export default async function Sections({ sections }: SectionsProps) {
         (section: any) =>
           (section._type == "rich_text" && (
             <RichTextSection key={section._key} section={section} />
+          )) ||
+          (section._type == "media_text" && (
+            <MediaTextSection key={section._key} section={section} />
           )) ||
           (section._type == "slider" && (
             <SliderSection key={section._key} slides={section.slides} />
