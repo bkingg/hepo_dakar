@@ -18,7 +18,13 @@ export default function MediaTextSection({ section }: MediaTextSectionProps) {
     ? urlFor(section.image).width(800).url()
     : "";
   return (
-    <section className={`section section__media-text ${section.layoutColor}`}>
+    <section
+      style={{
+        backgroundColor: section.layoutColor === "dark" ? "#2c236b" : "",
+        color: section.layoutColor === "dark" ? "#fff" : "",
+      }}
+      className={`section section__media-text ${section.layoutColor}`}
+    >
       <div className="container">
         <div
           className={`row align-items-center ${section.layout === "image_text" ? "" : "flex-row-reverse"}`}

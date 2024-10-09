@@ -17,6 +17,8 @@ export default async function Contact() {
     contactPageTitle,
     contactPageImage,
     showMap,
+    contactPageSubTitle,
+    contactPageDescription,
     phone,
     address,
     email,
@@ -26,13 +28,18 @@ export default async function Contact() {
     query: SITE_SETTINGS_QUERY,
   });
 
-  const contactPageImageUrl = siteSettings?.image
-    ? urlFor(siteSettings?.image).size(1000, 1000).crop("center").url()
+  const contactPageImageUrl = siteSettings?.contactPageImage
+    ? urlFor(siteSettings?.contactPageImage)
+        .size(1000, 1000)
+        .crop("center")
+        .url()
     : "";
   return (
     <>
       <PageHeader image={contactPageImageUrl}>
-        <h1 className="page__title text-center">Contact</h1>
+        <h1 className="page__title text-center">
+          {siteSettings.contactPageTitle}
+        </h1>
       </PageHeader>
       <div>
         {siteSettings.showMap && (
@@ -49,13 +56,14 @@ export default async function Contact() {
       <div className="section container">
         <div className="row">
           <div className="col-sm-6">
-            <h1>Nous Joindre</h1>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-              doloremque similique et commodi, quas id, nulla voluptates autem
-              rerum consequatur quod. Porro similique fugiat odio adipisci quos
-              molestiae maiores dolorem.
-            </p>
+            {siteSettings.contactPageSubTitle && (
+              <h1 className="text-start">{siteSettings.contactPageSubTitle}</h1>
+            )}
+            {siteSettings.contactPageDescription && (
+              <p className="text-start">
+                {siteSettings.contactPageDescription}
+              </p>
+            )}
             <div className="card contact__info flex-row flex-wrap align-items-center mb-3 p-4">
               <div className="card-header border-0">
                 <i className="bi bi-telephone"></i>

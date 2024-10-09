@@ -5,7 +5,7 @@ export default async function handler(req: NextApiRequest,
   res: NextApiResponse) {
   if (req.method === "POST") {
     // Send Email
-    const { name, email, programme, message } = req.body;
+    const { name, email, programme, phoneNumber, message } = req.body;
     // Create a transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -21,8 +21,11 @@ export default async function handler(req: NextApiRequest,
       replyTo: email,
       to: process.env.GMAIL_USER, // Receiver's address
       subject: `Inscription - ${programme}`, // Subject line
-      text: message, // Plain text body
-      html: `<p>${message}</p>`, // HTML body content
+      text: `Numéro de téléphone: ${phoneNumber}
+            Message:
+            ${message}
+            `, // Plain text body
+      html: `<h4>Numéro de Tel:</h4><p>${phoneNumber}</p><h4>Message:</h4><p>${message}</p>`, // HTML body content
     };
 
     try {

@@ -68,6 +68,18 @@ export default defineType({
       group: 'contact'
     }),
     defineField({
+      title: 'Sous-Titre',
+      name: 'contactPageSubTitle',
+      type: 'string',
+      group: 'contact'
+    }),
+    defineField({
+      title: 'Description',
+      name: 'contactPageDescription',
+      type: 'text',
+      group: 'contact'
+    }),
+    defineField({
       title: 'Tél',
       name: 'phone',
       group: 'contact',
