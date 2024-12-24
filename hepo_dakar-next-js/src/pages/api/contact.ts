@@ -7,19 +7,21 @@ export default async function handler(req: NextApiRequest,
     // Send Email
     const { name, email, phoneNumber, message } = req.body;
     // Create a transporter object using the default SMTP transport
-    let transporter = nodemailer.createTransport({
-      service: 'gmail',
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.office365.com',
+      port: 587,
+      secure: false, // Use TLS
       auth: {
-        user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_PASS,
+        user: process.env.OFFICE365_USER, // Your Office 365 email address
+        pass: process.env.OFFICE365_PASS, // Your Office 365 app password
       },
     });
 
     // Set up email data with unicode symbols
     let mailOptions = {
-      from: `"${name}" <${email}>`, // Sender's address
+      from: `"HEPO DAKAR" <${process.env.OFFICE365_USER}>`, // Sender's address
       replyTo: email,
-      to: process.env.GMAIL_USER, // Receiver's address
+      to: process.env.OFFICE365_USER, // Receiver's address
       subject: 'Demande d\'informations', // Subject line
       text: `Numéro de téléphone: ${phoneNumber}
             Message:
