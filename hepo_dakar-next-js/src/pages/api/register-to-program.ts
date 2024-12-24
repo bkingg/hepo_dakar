@@ -23,11 +23,13 @@ export default async function handler(req: NextApiRequest,
       replyTo: email,
       to: process.env.OFFICE365_USER, // Receiver's address
       subject: `Inscription - ${programme}`, // Subject line
-      text: `Numéro de téléphone: ${phoneNumber}
+      text: `Nom: ${name}
+            Email: ${email}
+            Numéro de téléphone: ${phoneNumber}
             Message:
             ${message}
             `, // Plain text body
-      html: `<h4>Numéro de Tel:</h4><p>${phoneNumber}</p><h4>Message:</h4><p>${message}</p>`, // HTML body content
+      html: `<h4>Nom:</h4><p>${name}</p><h4>Email:</h4><p>${email}</p><h4>Numéro de Téléphone:</h4><p>${phoneNumber}</p><h4>Message:</h4><p>${message}</p>`, // HTML body content
     };
 
     try {

@@ -101,7 +101,7 @@ export default function ContactForm() {
         )}
       </div>
 
-      <div className={`mb-3 ${errors.phoneNumber ? "is-invalid" : ""}`}>
+      {/* <div className={`mb-3 ${errors.phoneNumber ? "is-invalid" : ""}`}>
         <Controller
           name="phoneNumber"
           control={control}
@@ -126,7 +126,7 @@ export default function ContactForm() {
             </>
           )}
         />
-      </div>
+      </div> */}
 
       <div className="mb-3">
         <label htmlFor="message" className="form-label visually-hidden">
