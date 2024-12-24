@@ -26,10 +26,11 @@ export default async function handler(req: NextApiRequest,
       text: `Nom: ${name}
             Email: ${email}
             Numéro de téléphone: ${phoneNumber}
+            Programme: ${programme}
             Message:
             ${message}
             `, // Plain text body
-      html: `<h4>Nom:</h4><p>${name}</p><h4>Email:</h4><p>${email}</p><h4>Numéro de Téléphone:</h4><p>${phoneNumber}</p><h4>Message:</h4><p>${message}</p>`, // HTML body content
+      html: `<h4>Nom:</h4><p>${name}</p><h4>Email:</h4><p>${email}</p><h4>Programme:</h4><p>${programme}</p><h4>Numéro de Téléphone:</h4><p>${phoneNumber}</p><h4>Message:</h4><p>${message}</p>`, // HTML body content
     };
 
     try {
