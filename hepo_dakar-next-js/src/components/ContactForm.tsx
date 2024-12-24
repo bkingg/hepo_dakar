@@ -4,9 +4,20 @@ import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useState } from "react";
+import { SanityDocument } from "next-sanity";
 import PhoneInput from "react-phone-input-2";
 import fr from "react-phone-input-2/lang/fr.json";
 import "react-phone-input-2/lib/bootstrap.css";
+
+interface ContactFormProps {
+  programme: SanityDocument;
+}
+
+interface Programme {
+  _id: string;
+  title: string;
+  slug: { current: string };
+}
 
 type FormData = z.infer<typeof schema>;
 
@@ -20,10 +31,13 @@ const schema = z.object({
   phoneNumber: z
     .string()
     .min(10, { message: "Veuillez saisir un numéro valide" }),
+  programme: z
+    .string()
+    .min(1, { message: "Veuillez sélectionner un programme" }),
   message: z.string().min(1, { message: "Veuillez saisir votre message" }),
 });
 
-export default function ContactForm() {
+export default function ContactForm({ programme }: ContactFormProps) {
   const {
     control,
     register,
@@ -66,7 +80,7 @@ export default function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="contact-form needs-validation"
+      className="needs-validation"
       noValidate
     >
       <div className="mb-3">
@@ -76,7 +90,7 @@ export default function ContactForm() {
         <input
           id="name"
           placeholder="Nom"
-          className={`form-control ${errors.name && "is-invalid"}`}
+          className={`form-control ${errors.name ? "is-invalid" : ""}`}
           {...register("name")}
           required
         />
@@ -91,7 +105,7 @@ export default function ContactForm() {
         </label>
         <input
           id="email"
-          className={`form-control ${errors.email && "is-invalid"}`}
+          className={`form-control ${errors.email ? "is-invalid" : ""}`}
           type="email"
           placeholder="Email"
           {...register("email")}
@@ -101,7 +115,7 @@ export default function ContactForm() {
         )}
       </div>
 
-      {/* <div className={`mb-3 ${errors.phoneNumber ? "is-invalid" : ""}`}>
+      <div className={`mb-3 ${errors.phoneNumber ? "is-invalid" : ""}`}>
         <Controller
           name="phoneNumber"
           control={control}
@@ -126,7 +140,7 @@ export default function ContactForm() {
             </>
           )}
         />
-      </div> */}
+      </div>
 
       <div className="mb-3">
         <label htmlFor="message" className="form-label visually-hidden">
@@ -134,7 +148,7 @@ export default function ContactForm() {
         </label>
         <textarea
           id="message"
-          className={`form-control ${errors.message && "is-invalid"}`}
+          className={`form-control ${errors.message ? "is-invalid" : ""}`}
           {...register("message")}
           rows={8}
           placeholder="Message"
