@@ -18,7 +18,7 @@ interface QuestionReponse {
 
 export default function FAQSection({ section }: FAQSectionProps) {
   return (
-    <section className="section section-animate section__faq">
+    <section className="section section__faq">
       <div className="container">
         {section.title !== undefined && <h1>{section.title}</h1>}
         {section.description !== undefined && <p>{section.description}</p>}
