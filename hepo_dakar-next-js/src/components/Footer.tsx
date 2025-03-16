@@ -74,11 +74,11 @@ export default async function Footer() {
         <div className="footer__newsletter card mb-5">
           <form className="card-body">
             <div className="row d-flex align-items-center">
-              <div className="col-sm-6">
+              <div className="col-md-6">
                 <h5>Souscrire à la Newsletter</h5>
                 <p className="mb-0">Résumé mensuel de nos activités</p>
               </div>
-              <div className="col-sm-6">
+              <div className="col-md-6">
                 <div className="d-flex flex-column flex-sm-row w-100 gap-2">
                   <label htmlFor="newsletter1" className="visually-hidden">
                     Adresse Email

@@ -2,7 +2,7 @@
   background-color: rgba(map.get($theme-colors, "primary"), 0.8);
   backdrop-filter: blur(5px);
   padding: 0;
-  @include media-breakpoint-up(sm) {
+  @include media-breakpoint-up(md) {
     .navbar-brand {
       padding-top: 5px;
       padding-bottom: 5px;
@@ -93,7 +93,7 @@
       }
     }
   }
-  @include media-breakpoint-down(sm) {
+  @include media-breakpoint-down(md) {
     .nav-link {
       color: map.get($theme-colors, "light");
     }

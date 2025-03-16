@@ -19,6 +19,10 @@ export default defineType({
       title: 'Programmes',
     },
     {
+      name: 'actualites',
+      title: 'Blog',
+    },
+    {
       name: 'contact',
       title: 'Contact',
     },
@@ -55,6 +59,15 @@ export default defineType({
       name: 'programmesPageImage',
       type: 'image',
       group: 'programmes',
+      options: {
+        hotspot: true,
+      }
+    }),
+    defineField({
+      title: 'Blog - Image',
+      name: 'actualitesPageImage',
+      type: 'image',
+      group: 'actualites',
       options: {
         hotspot: true,
       }

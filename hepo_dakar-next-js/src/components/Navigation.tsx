@@ -92,7 +92,7 @@ export default async function Navigation() {
     });
   };
   return (
-    <Navbar expand="sm" sticky="top" className="header" variant="dark">
+    <Navbar expand="md" sticky="top" className="header" variant="dark">
       <Container>
         <NavbarBrand href="/">
           <Image
