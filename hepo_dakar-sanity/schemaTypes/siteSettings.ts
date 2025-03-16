@@ -15,6 +15,10 @@ export default defineType({
       title: 'Pied de Page',
     },
     {
+      name: 'programmes',
+      title: 'Programmes',
+    },
+    {
       name: 'contact',
       title: 'Contact',
     },
@@ -47,13 +51,22 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      title: 'Titre',
+      title: 'Programmes - Image',
+      name: 'programmesPageImage',
+      type: 'image',
+      group: 'programmes',
+      options: {
+        hotspot: true,
+      }
+    }),
+    defineField({
+      title: 'Contact - Titre',
       name: 'contactPageTitle',
       type: 'string',
       group: 'contact'
     }),
     defineField({
-      title: 'Image',
+      title: 'Contact - Image',
       name: 'contactPageImage',
       type: 'image',
       group: 'contact',
@@ -68,13 +81,13 @@ export default defineType({
       group: 'contact'
     }),
     defineField({
-      title: 'Sous-Titre',
+      title: 'Contact - Sous-Titre',
       name: 'contactPageSubTitle',
       type: 'string',
       group: 'contact'
     }),
     defineField({
-      title: 'Description',
+      title: 'Contact - Description',
       name: 'contactPageDescription',
       type: 'text',
       group: 'contact'

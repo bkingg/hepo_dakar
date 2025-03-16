@@ -1,14 +1,14 @@
 @use "sass:map";
 
 $theme-colors: (
-  'primary': #2c236b,
-  'secondary': #bb984f,
-  'success': #22e11c,
-  'info': #d9ff50,
-  'warning': #ffbe0b,
-  'danger': #ff0000,
-  'light': #ffffff,
-  'dark': #000103,
+  "primary": #2c236b,
+  "secondary": #bb984f,
+  "success": #22e11c,
+  "info": #d9ff50,
+  "warning": #ffbe0b,
+  "danger": #ff0000,
+  "light": #ffffff,
+  "dark": #000103,
 );
 
 $sm: 576px;
@@ -20,6 +20,7 @@ $xl: 1200px;
 @import "bootstrap/scss/bootstrap.scss";
 
 // Partials
+@import "animate";
 @import "navigation";
 @import "footer";
 @import "programmes";
@@ -37,38 +38,56 @@ $xl: 1200px;
 //     outline: 1px red dotted;
 // }
 
-body{
-    font-family: 'Montserrat', sans-serif;
+body {
+  font-family: "Montserrat", sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 600;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
 }
 
 .page__header {
-    position: relative;
-    padding-top: 80px;
-    padding-bottom: 80px;
-    color: #fff;
-    text-align: center;
+  position: relative;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  color: #fff;
+  text-align: center;
 }
 
-.section{
-    padding-top: 40px;
-    padding-bottom: 40px;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    h1:first-of-type, h1:first-of-type + p{
-        text-align: center;
+.section {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  h1:first-of-type,
+  h1:first-of-type + p {
+    text-align: center;
+  }
+
+  &.section-animate {
+    opacity: 0;
+    transform: translateY(50px);
+    transition:
+      opacity 0.5s ease-out,
+      transform 0.5s ease-out;
+    &.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
+  }
 }
 
 .btn {
-    border-radius: 1.75rem;
-    text-transform: uppercase;
-    font-size: 14px;
+  border-radius: 1.75rem;
+  text-transform: uppercase;
+  font-size: 14px;
 }
 
 .form-control {
-    border-radius: 1.75rem;
+  border-radius: 1.75rem;
 }

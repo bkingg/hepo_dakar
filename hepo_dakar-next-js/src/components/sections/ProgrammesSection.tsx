@@ -21,7 +21,7 @@ export default async function ProgrammesSection({
 }: ProgrammesSectionProps) {
   const programmes = section.programmes;
   return (
-    <section className="section section__actualites">
+    <section className="section section-animate section__actualites">
       <div className="container">
         {section.title && <h1 className="text-center">{section.title}</h1>}
         {section.description && (

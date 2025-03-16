@@ -15,7 +15,7 @@ interface Logo {
 
 export default function LogoListSection({ section }: LogoListSectionProps) {
   return (
-    <section className="section text-center">
+    <section className="section section-animate text-center">
       <div className="container">
         {section.title !== undefined && <h1>{section.title}</h1>}
         {section.description !== undefined && <p>{section.description}</p>}

@@ -23,7 +23,7 @@ export default function MediaTextSection({ section }: MediaTextSectionProps) {
         backgroundColor: section.layoutColor === "dark" ? "#2c236b" : "",
         color: section.layoutColor === "dark" ? "#fff" : "",
       }}
-      className={`section section__media-text ${section.layoutColor}`}
+      className={`section section-animate section__media-text ${section.layoutColor}`}
     >
       <div className="container">
         <div

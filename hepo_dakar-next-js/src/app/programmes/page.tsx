@@ -41,12 +41,20 @@ const SITE_SETTINGS_QUERY = groq`*[
       }
     }
   },
+  programmesPageImage
 }`;
 
 export default async function Programmes() {
   const siteSettings = await sanityFetch<SanityDocument>({
     query: SITE_SETTINGS_QUERY,
   });
+
+  const programmesPageImageUrl = siteSettings?.programmesPageImage
+    ? urlFor(siteSettings?.programmesPageImage)
+        .size(1000, 1000)
+        .crop("center")
+        .url()
+    : "";
 
   let programmes: Programme[] = [];
   let niveaux: string[] = ["Tous"];
@@ -126,7 +134,7 @@ export default async function Programmes() {
 
   return (
     <>
-      <PageHeader>
+      <PageHeader image={programmesPageImageUrl}>
         <h1 className="page__title">Programmes</h1>
       </PageHeader>
       <div className="section">

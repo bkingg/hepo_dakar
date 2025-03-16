@@ -17,12 +17,12 @@ import faqSection from "./faqSection";
 import mediaTextSection from "./mediaTextSection";
 
 export const schemaTypes = [
-    siteSettings,
     menuType,
     menuItemType,
     pageType,
     programmeType,
     articleType,
+    siteSettings,
     
     // Sections
     richTextSection,
