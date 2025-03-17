@@ -7,31 +7,40 @@ const AnimateOnScroll: React.FC = () => {
   const pathname = usePathname(); // Get current path
 
   useEffect(() => {
-    const sections = document.querySelectorAll<HTMLElement>(".section");
+    let observer: IntersectionObserver;
 
-    if (sections.length === 0) return; // Exit if no sections exist
+    const initializeObserver = () => {
+      const sections = document.querySelectorAll<HTMLElement>(".section");
 
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + window.innerHeight;
+      if (sections.length === 0) return; // Exit if no sections exist
 
-      sections.forEach((section) => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-
-        if (scrollPosition >= sectionTop + sectionHeight / 3) {
-          section.classList.add("visible"); // Add visible class for animation
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible"); // Add animation class
+              observer.unobserve(entry.target); // Stop observing once visible
+            }
+          });
+        },
+        {
+          root: null,
+          rootMargin: "0px 0px -10% 0px",
+          threshold: 0.2,
         }
-      });
+      );
+
+      sections.forEach((section) => observer.observe(section));
     };
 
-    // Initialize scroll event listener
-    window.addEventListener("scroll", handleScroll);
+    // Add slight delay to ensure DOM is fully updated after route change
+    const timeout = setTimeout(initializeObserver, 300);
 
-    // Cleanup event listeners
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(timeout);
+      if (observer) observer.disconnect();
     };
-  }, [pathname]); // Re-run when pathname changes
+  }, [pathname]); // Re-run on route change
 
   return null;
 };
