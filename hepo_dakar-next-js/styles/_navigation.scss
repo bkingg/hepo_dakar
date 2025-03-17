@@ -2,6 +2,11 @@
   background-color: rgba(map.get($theme-colors, "primary"), 0.8);
   backdrop-filter: blur(5px);
   padding: 0;
+
+  .navbar-nav > .nav-item > .nav-link,
+  .navbar-nav > .nav-link {
+    font-weight: bold;
+  }
   @include media-breakpoint-up(md) {
     .navbar-brand {
       padding-top: 5px;
